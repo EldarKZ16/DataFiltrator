@@ -1,0 +1,8 @@
+version: "2"
+services:
+  filtrator:
+    container_name: data_filtrator
+    image: data-filtrator:latest
+    environment:
+      - CSV_FILE_NAME=companies.csv
+      - FILTER_FILE_NAME=filters.json
