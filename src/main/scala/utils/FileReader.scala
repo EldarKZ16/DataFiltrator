@@ -23,10 +23,10 @@ object FileReader extends Json4sSerialization {
     val bufferedSource = Source.fromResource(fileName)
 
     val jsonString = bufferedSource.mkString
-    val json = parse(jsonString).extract[JArray]
+    val json = parse(jsonString)
 
     bufferedSource.close()
-    json.arr
+    json.children
   }
 
 }

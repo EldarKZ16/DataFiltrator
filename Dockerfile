@@ -1,16 +1,20 @@
 FROM openjdk:8-alpine
 
+ENV UNIVERSAL_ZIP_NAME filtrator.zip
+ENV UNIVERSAL_NAME filtrator
+ENV SCRIPT data-filtrator
+
 RUN apk add --no-cache bash
 
 RUN mkdir -p /app/resources
 COPY ./src/main/resources/* /app/resources/
 
 WORKDIR /app
-COPY ./target/universal/data-filtrator-0.0.1.zip /app/
-RUN unzip -q data-filtrator-0.0.1.zip
-RUN rm /app/data-filtrator-0.0.1.zip
+COPY ./target/universal/$UNIVERSAL_ZIP_NAME /app/
+RUN unzip -q $UNIVERSAL_ZIP_NAME
+RUN rm /app/$UNIVERSAL_ZIP_NAME
 
-WORKDIR /app/data-filtrator-0.0.1/bin
-CMD chmod +x data-filtrator
+WORKDIR /app/$UNIVERSAL_NAME/bin
+CMD chmod +x $SCRIPT
 
-CMD ["/bin/bash", "-c", "./data-filtrator"]
+CMD ["/bin/bash", "-c", "./$SCRIPT"]

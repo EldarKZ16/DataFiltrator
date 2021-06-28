@@ -8,12 +8,15 @@ lazy val logbackVersion          = "1.2.3"
 lazy val scalaLoggingVersion     = "3.9.3"
 lazy val configVersion           = "1.4.1"
 lazy val json4sVersion           = "4.0.0"
+lazy val scalaTestVersion        = "3.2.9"
 
 libraryDependencies ++= Seq(
   "com.typesafe"                   %  "config"          % configVersion,
   "ch.qos.logback"                 %  "logback-classic" % logbackVersion,
   "com.typesafe.scala-logging"     %% "scala-logging"   % scalaLoggingVersion,
-  "org.json4s"                     %% "json4s-jackson"  % json4sVersion
+  "org.json4s"                     %% "json4s-jackson"  % json4sVersion,
+  "org.scalatest"                  %% "scalatest"       % scalaTestVersion % Test
 )
 
+packageName in Universal := "filtrator"
 enablePlugins(JavaAppPackaging)
